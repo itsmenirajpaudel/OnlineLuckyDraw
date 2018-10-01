@@ -1,27 +1,26 @@
 <!-- One -->
 <section id="one" class="wrapper style2 fullscreen spotlights">
     <section>
-        <!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a> -->
         <div class="content">
             <div class="inner">
                 <h2>Select your Lucky Number</h2>
                 <p>Select <b>4 numbers</b> from below:</p>
                 <ul class="numbers-list">
-                    <li><a href="#">0</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li><a href="#">9</a></li>
+                    <ng-container *ngFor="let number of numbers">
+                        <li *ngIf="!isDisabled(number)">
+                            <a (click)="selectNumber(number)"> {{number}}</a>
+                        </li>
+                        <li *ngIf="isDisabled(number)">
+                            <a style="background:#312450"> {{number}}</a>
+                        </li>
+                    </ng-container>
                 </ul>
                 <ul class="actions">
                     <li><a (click)="goToDetails()" class="button scrolly">Next Step</a></li>
-                    <li><a href="#" class="button">Reset Numbers</a></li>
+                    <li><a (click)="resetNumbers()" class="button">Reset Numbers</a></li>
                 </ul>
+
+                <span *ngIf="selectedNumberCommaSeparated"> The number you selected: {{selectedNumberCommaSeparated}} </span>
             </div>
         </div>
     </section>
